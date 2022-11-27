@@ -1,77 +1,84 @@
-const choices = ['rock', 'paper', 'scissors'];
-const winners = [];
+const options = ['rock', 'paper', 'scissors'];
 
-function game() {
-    for (let i = 1; i <= 5; i++) {
-    playRound(i);
+// Random selection for computer
+function getComputerChoice() {
+    const choice = options[Math.floor(Math.random() * options.length)];
+    return choice;
+}
+
+// Prompt for user to input their choice
+function getPlayerChoice() {
+    let check = false;
+    while(check == false){
+        const choice = prompt("Choose Your Weapon!");
+        if (choice == null){
+            continue; //To cause prompt to keep occurring after each input
+        }
+        const choiceLowerCase = choice.toLowerCase();
+        if(options.includes(choiceLowerCase)) {
+            check == true;
+            return choiceLowerCase;
+        }
     }
-    logWins();
-}   
-
-function playRound(round) {
-    const playerSelection = playerChoice();
-    const computerSelection = computerChoice(); 
-    const winner = checkWinner(playerSelection, computerSelection)
-    winners.push(winner);
-    logRound(playerSelection, computerSelection, winner, round)
 }
 
-function playerChoice() {
-    let input = prompt("Choose Your Weapon!");
-    while(input == null) {
-        input = prompt("Choose Your Weapon!");
-    }
-    input = input.toLowerCase();
-    let check = validateInput(input)
-    while (check == false) {
-    input = prompt("Choose Your Weapon!");
-    while (input == null) {
-        input = prompt("Choose Your Weapon!");
-    }
-    input = input.toLowerCase();
-    check = validateInput(input);
-}
-    return input;
-}
-
-
-function validateInput(choice) {
-    return choices.includes(choice)
-}
-
-
-function computerChoice() {
-    return choices[Math.floor(Math.random() * choices.length)];
-}
-
-function checkWinner(choiceP, choiceC) {
-    if (choiceP === choiceC) {
-        return "Draw";
-    } else if (
-        (choiceP === 'rock' && choiceC == 'scissors') ||
-        (choiceP === 'paper' && choiceC == 'rock') ||
-        (choiceP === 'scissors' && choiceC == 'paper')
-    ) {
+// Check who is the winner based on the choices
+function checkWinner(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+        return "Draw"
+    } 
+    else if (
+       (playerSelection == 'rock' && computerSelection == 'scissors') ||
+       (playerSelection == 'paper' && computerSelection == 'rock') ||
+       (playerSelection == 'scissors' && computerSelection == 'paper')
+    ){ 
         return "Player";
     } else {
         return "Computer";
     }
 }
 
-function logWins() {
-    let playerWins = winners.filter((item) => item == "Player").length;
-    let computerWins = winners.filter((item) => item == "Computer").length;
-    let draws = winners.filter((item) => item == "Draw").length;
-    console.log("Results:");
-    console.log("Player Wins:", playerWins);
-    console.log("Computer Wins:", computerWins);
-    console.log("Draws:", draws); 
+// Returns the result of each round
+function playRound(playerSelection, computerSelection) {
+    const result = checkWinner(playerSelection, computerSelection);
+    if (result == "Draw") {
+        return "It's a draw!"
+    }
+    else if(result == "Player") {
+        return `You win! ${playerSelection} beats ${computerSelection}`
+    }
+    else {
+        return `You lose! ${computerSelection} beats ${playerSelection}`
+    }
 }
 
-function logRound(playerChoice, computerChoice, winner, round) {
-    console.log("Round: ", round)
-    console.log("Player chose: ", playerChoice);
-    console.log("Computer chose: ", computerChoice);
-    console.log(winner, "won the round");
-    console.log("-------------------------")
+// Keeps the score of each round and ends the game after 5 rounds declaring the outcome
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
+    console.log("Welcome!")
+    for (let i = 0 ; i < 5; i++){
+        const playerSelection = getPlayerChoice();
+        const computerSelection = getComputerChoice();
+        console.log(playRound(playerSelection, computerSelection));
+        console.log("---------Next Round----------")
+        if (checkWinner(playerSelection, computerSelection) == "Player") {
+            playerScore++;
+        }
+        else if (checkWinner(playerSelection, computerSelection) == "Computer") {
+            computerScore++;
+        }
+    }
+    console.log("Game Over")
+    if (playerScore > computerScore) {
+        console.log("Player is the winner!");
+    }
+    else if (playerScore < computerScore) {
+        console.log("Computer is the winner!")
+    }
+    else {
+        console.log("The game is a draw!")
+    }
 }
+
+game();
