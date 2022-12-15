@@ -5,13 +5,49 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="script.js"></script> 
+    <script src="ui-script.js" defer></script> 
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=MedievalSharp">
 </head>
 <body>
-    <h1>Rock, Paper, Scissors!</h1>
 
-    <h2>This version will include a UI! Testing first push.</h2>
+<!-- Heading Section -->
+    <div class="banner">
+        <img src="images/banner.png" id="bannerImage">
+    </div>
 
- <button onclick="game()">Start Game</button>
+    <div class="selections">
+<!-- Player Selections -->
+    <div class="playerSelections">
+        <img src="images/PlayerArcher.png" id="playerArcher">
+        <img src="images/PlayerWizard.png" id="playerWizard">
+        <img src="images/PlayerWarrior.png" id="playerWarrior">
+    </div>
+
+<!-- Computer Selections -->
+    <div class="computerSelections">
+        <img src="images/ComputerWarrior.png" id="computerWarrior">
+        <img src="images/ComputerWizard.png" id="computerWizard">
+        <img src="images/ComputerArcher.png" id="computerArcher">
+    </div>
+</div>
+
+<!-- Battle Arena Section -->
+
+    <div id="playersChoice">
+
+    </div>
+
+    <!-- Section where ability will display -->
+
+    <div id="computersChoice">
+
+    </div>
+
+<!-- Herald Announcer -->
+
+    <div class="herald">
+
+    </div>
 </body>
 </html>

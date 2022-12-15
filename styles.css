@@ -1,0 +1,77 @@
+* {
+	box-sizing : border-box;
+}
+
+html {
+    background: url(images/backgroundImage.webp) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+/* link: <a href="https://www.freepik.com/free-vector/creepy-castle-rock-night-haunted-gothic-palace-mountains-building-with-pointed-tower-roofs-glowing-windows-bats-flying-dark-sky-fantasy-dracula-home-cartoon-vector-illustration_12120255.htm#query=medieval%20background&position=1&from_view=keyword">Image by upklyak</a> on Freepik*/
+}
+html,
+body {
+	margin : 0;
+	padding : 0;
+}
+
+body {
+    background-attachment: fixed;
+}
+
+.banner {
+    position: fixed;
+    top: 68%;
+    left: 1%;
+}
+
+#bannerImage {
+    height: 225px;
+    width: 225px;
+}
+
+
+#playerArcher {
+    position: fixed;
+    top: 83%;
+    left: 19%;
+}
+
+#playerWizard {
+    position: fixed;
+    top: 75%;
+    left: 26%;
+}
+
+#playerWarrior {
+    position: fixed;
+    top: 83%;
+    left: 32%;
+}
+
+#computerWarrior {
+    position: fixed;
+    top: 81%;
+    right: 45%;
+}
+
+#computerWizard {
+    position: fixed;
+    top: 78%;
+    right: 35%;
+}
+
+#computerArcher {
+    position: fixed;
+    top: 84%;
+    right: 22%;
+}
+
+
+.playerSelections, 
+.computerSelections, 
+img{
+    width: 100px;
+    height: 100px;
+}
