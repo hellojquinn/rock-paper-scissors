@@ -38,6 +38,45 @@ body {
     left: 19%;
 }
 
+#playerArrow {
+    position: absolute;
+    top: 83%;
+    left: 21%;
+}
+  .shoot {
+    animation: arrowAnimation 0.8s linear;
+  }
+
+  #playerArrow {
+    --arrow-left: 0%;
+    --arrow-top: 0%;
+  }
+  
+  @keyframes arrowAnimation {
+    0% {
+      left: 21%;
+    }
+    100% {
+      left: var(--arrow-left);
+      top: var(--arrow-top);
+    }
+  }
+
+.hit {
+    animation: flicker 0.2s linear 3;
+  }
+  @keyframes flicker {
+    0% {
+      opacity: 100%;
+    }
+    50% {
+        opacity: 0%;
+    }
+    100% {
+        opacity: 100%;
+    }
+  }
+
 #playerWizard {
     position: fixed;
     top: 75%;
