@@ -9,24 +9,30 @@ Make counter for whichever user first gets to 5 wins, announce them as winner
 Give button to restart game
 */
 
+
 let playerChoice;
+let computerChoice;
+// Random selection for computer
+const options = ['Warrior', 'Wizard', 'Archer'];
+
+function getComputerChoice() {
+    const choice = options[Math.floor(Math.random() * options.length)];
+    return choice;
+}
+
 
 //Player arrow shooting from Archer
 let playerArrow = document.getElementById('playerArrow');
 playerArrow.style.display = 'none';
 computerArrow.style.display = 'none';
 
-
-
 document.getElementById('playerArcher').addEventListener('click', function() {
   playerChoice = 'Archer';
   playerArrow.style.display = 'inline-block';
-});
-
-document.getElementById('playerArcher').addEventListener('click', function() {
   playerArrow.classList.add('shoot');
 
-  const computerChoice = getComputerChoice();
+  computerChoice = getComputerChoice();
+  
 
   let target = document.getElementById(`computer${computerChoice}`);
   let targetX = target.offsetLeft;
@@ -41,77 +47,21 @@ document.getElementById('playerArcher').addEventListener('click', function() {
   playerArrow.addEventListener('animationend', function() {
     playerArrow.style.display = 'none';
     target.classList.add('hit');
-
-    handleRetaliation(computerChoice, playerChoice);
   });
+  handleRetaliation(computerChoice, playerChoice);
 });
-
-   function handleRetaliation(computerChoice, playerChoice) {
-    //retaliation /////////////////////////////
-
-        let playerTarget = document.getElementById(`player${playerChoice}`); //FIX this to be based on players selection, not archer.
-        let playerTargetX = playerTarget.offsetLeft;
-        let playerTargetY = playerTarget.offsetTop;
-
-        playerTarget.classList.remove('hit');
-
-///////////// Archer retaliate
-        if (computerChoice === 'Archer') {
-        computerArrow.style.display = 'inline-block';
-        computerArrow.classList.add('compShoot');
-        
-        let compArrowAnimation = getComputedStyle(computerArrow).animation;
-        computerArrow.style.setProperty('--target-left', `${playerTargetX}px`);
-        computerArrow.style.setProperty('--target-top', `${playerTargetY}px`);
-
-
-        computerArrow.addEventListener('animationend', function() {
-          computerArrow.style.display = 'none';
-          playerTarget.classList.add('hit');
-        });
-      } else {
-        computerArrow.style.display = 'none';
-        computerArrow.classList.remove('compShoot');
-
-///////////// Wizard retaliate
-      } if (computerChoice === 'Wizard') {
-        computerSpell.style.display = 'inline-block';
-        computerSpell.classList.add('compSpell');
-        
-        let compSpellanimation = getComputedStyle(computerSpell).animation;
-        computerSpell.style.setProperty('--target-left', `${playerTargetX}px`);
-        computerSpell.style.setProperty('--target-top', `${playerTargetY}px`);
-
-
-        computerSpell.addEventListener('animationend', function() {
-          computerSpell.style.display = 'none';
-          playerTarget.classList.add('hit');
-        });
-      } else {
-        computerSpell.style.display = 'none';
-        computerSpell.classList.remove('compSpell');
-    }
-}
- 
-  
-  
-//ability hits target, and target fires its ability back at clicked element
 
 //Player magic spell shooting from Wizard
 let playerSpell = document.getElementById('playerSpell');
 playerSpell.style.display = 'none';
 computerSpell.style.display = 'none';
 
-
 document.getElementById('playerWizard').addEventListener('click', function() {
   playerChoice = 'Wizard';
   playerSpell.style.display = 'inline-block';
-});
-
-document.getElementById('playerWizard').addEventListener('click', function() {
   playerSpell.classList.add('spell');
 
-  const computerChoice = getComputerChoice();
+  computerChoice = getComputerChoice();
 
   let target = document.getElementById(`computer${computerChoice}`);
   let targetX = target.offsetLeft;
@@ -126,55 +76,21 @@ document.getElementById('playerWizard').addEventListener('click', function() {
   playerSpell.addEventListener('animationend', function() {
     playerSpell.style.display = 'none';
     target.classList.add('hit');
-
+    });
     handleRetaliation(computerChoice, playerChoice);
 });
-});
-/*
-        //retaliation /////////////////////////////
-        function handleRetaliation(computerChoice, playerChoice) {
-            //retaliation /////////////////////////////
-        
-                let playerTarget = document.getElementById(`player${playerChoice}`); //FIX this to be based on players selection, not archer.
-                let playerTargetX = playerTarget.offsetLeft;
-                let playerTargetY = playerTarget.offsetTop;
-        
-                playerTarget.classList.remove('hit');
-        
-                if (computerChoice === 'Wizard') {
-                computerSpell.style.display = 'inline-block';
-                computerSpell.classList.add('compSpell');
-                
-                let compSpellAnimation = getComputedStyle(computerSpell).animation;
-                computerSpell.style.setProperty('--target-left', `${playerTargetX}px`);
-                computerSpell.style.setProperty('--target-top', `${playerTargetY}px`);
-        
-        
-                computerSpell.addEventListener('animationend', function() {
-                  computerSpell.style.display = 'none';
-                  playerTarget.classList.add('hit');
-                });
-              } else {
-                computerSpell.style.display = 'none';
-                computerSpell.classList.remove('compSpell');
-              } 
-            }
-
-            */
-
 
 //Player axe slash from Warrior
 let playerAxe = document.getElementById('playerAxe');
 playerAxe.style.display = 'none';
+computerAxe.style.display = 'none';
 
 document.getElementById('playerWarrior').addEventListener('click', function() {
+  playerChoice = 'Warrior';
   playerAxe.style.display = 'inline-block';
-});
-
-document.getElementById('playerWarrior').addEventListener('click', function() {
   playerAxe.classList.add('slash');
 
-  const computerChoice = getComputerChoice();
+  computerChoice = getComputerChoice();
 
   let target = document.getElementById(`computer${computerChoice}`);
   target.classList.remove('hit');
@@ -184,12 +100,106 @@ document.getElementById('playerWarrior').addEventListener('click', function() {
     playerAxe.style.display = 'none';
     target.classList.add('hit');
   });
+  handleRetaliation(computerChoice, playerChoice);
 });
 
-// Random selection for computer
-const options = ['Warrior', 'Wizard', 'Archer'];
 
-function getComputerChoice() {
-    const choice = options[Math.floor(Math.random() * options.length)];
-    return choice;
+
+//retaliation function
+function handleRetaliation(computerChoice, playerChoice) { 
+
+    let playerTarget = document.getElementById(`player${playerChoice}`);
+    let playerTargetX = playerTarget.offsetLeft;
+    let playerTargetY = playerTarget.offsetTop;
+
+    playerTarget.classList.remove('hit');
+
+//Archer retaliate
+    if (computerChoice === 'Archer') {
+    computerArrow.style.display = 'inline-block';
+    computerArrow.classList.add('compShoot');
+    
+    let compArrowAnimation = getComputedStyle(computerArrow).animation;
+    computerArrow.style.setProperty('--target-left', `${playerTargetX}px`);
+    computerArrow.style.setProperty('--target-top', `${playerTargetY}px`);
+
+
+    computerArrow.addEventListener('animationend', function() {
+      computerArrow.style.display = 'none';
+      playerTarget.classList.add('hit');
+    });
+  } else {
+    computerArrow.style.display = 'none';
+    computerArrow.classList.remove('compShoot');
+
+//Wizard retaliate
+  } if (computerChoice === 'Wizard') {
+    computerSpell.style.display = 'inline-block';
+    computerSpell.classList.add('compSpell');
+    
+    let compSpellanimation = getComputedStyle(computerSpell).animation;
+    computerSpell.style.setProperty('--target-left', `${playerTargetX}px`);
+    computerSpell.style.setProperty('--target-top', `${playerTargetY}px`);
+
+
+    computerSpell.addEventListener('animationend', function() {
+      computerSpell.style.display = 'none';
+      playerTarget.classList.add('hit');
+    });
+  } else {
+    computerSpell.style.display = 'none';
+    computerSpell.classList.remove('compSpell');
+
+//Warrior retaliate
+
+  } if (computerChoice === 'Warrior') {
+    computerAxe.style.display = 'inline-block';
+    computerAxe.classList.add('compSlash');
+    
+    let compSlashAnimation = getComputedStyle(computerAxe).animation;
+    computerAxe.style.setProperty('--target-left', `${playerTargetX}px`);
+    computerAxe.style.setProperty('--target-top', `${playerTargetY}px`);
+
+
+    computerAxe.addEventListener('animationend', function() {
+      computerAxe.style.display = 'none';
+      playerTarget.classList.add('hit');
+    });
+  } else {
+    computerAxe.style.display = 'none';
+    computerAxe.classList.remove('compSlash');
+
+// rock paper scissors logic
+} if (playerChoice === computerChoice) {
+    alert("It's a draw!")
+        } else if (
+            (playerChoice == 'Warrior' && computerChoice == 'Archer') ||
+            (playerChoice == 'Wizard' && computerChoice == 'Warrior') ||
+            (playerChoice == 'Archer' && computerChoice == 'Wizard')
+    ){ 
+        alert(`You win! ${playerChoice} beats ${computerChoice}`)
+    } else {
+        alert(`You lose! ${computerChoice} beats ${playerChoice}`)
+    }
 }
+
+/*
+let result = handleRetaliation(playerChoice, computerChoice);
+
+function playRound(playerChoice, computerChoice) {
+    if (result == "Draw") {
+        console.log("It's a draw!")
+    }
+    else if(result == "Player") {
+        console.log(`You win! ${playerChoice} beats ${computerChoice}`)
+    }
+    else {
+        console.log(`You lose! ${computerChoice} beats ${playerChoice}`)
+    }
+}
+*/
+/*
+1. if player selection is X and computer selection is Y, add point to player, else add point to computer, display message of who beats who
+2. display points on board
+3. Whichever side first reaches 5, display winner
+*/
