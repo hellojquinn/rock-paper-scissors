@@ -15,6 +15,13 @@ let computerChoice;
 // Random selection for computer
 const options = ['Warrior', 'Wizard', 'Archer'];
 
+//Added in afterward so I didn't have the same two sides versing each other, and changing the array/variables broke the code in relation to the playerChoice.
+const computerChoiceMap = {
+    Warrior: 'Goblin',
+    Wizard: 'Dragon',
+    Archer: 'Centaur'
+  };
+
 function getComputerChoice() {
     const choice = options[Math.floor(Math.random() * options.length)];
     return choice;
@@ -171,33 +178,26 @@ function handleRetaliation(computerChoice, playerChoice) {
 
 // rock paper scissors logic
 } if (playerChoice === computerChoice) {
-    alert("It's a draw!")
+    document.getElementById('roundMessage').textContent = "Draw!";
         } else if (
             (playerChoice == 'Warrior' && computerChoice == 'Archer') ||
             (playerChoice == 'Wizard' && computerChoice == 'Warrior') ||
             (playerChoice == 'Archer' && computerChoice == 'Wizard')
     ){ 
-        alert(`You win! ${playerChoice} beats ${computerChoice}`)
+        document.getElementById('roundMessage').textContent = (`You win! ${playerChoice} beats ${computerChoiceMap[computerChoice]}`);
+        
     } else {
-        alert(`You lose! ${computerChoice} beats ${playerChoice}`)
+        document.getElementById('roundMessage').textContent = (`You lose! ${computerChoiceMap[computerChoice]} beats ${playerChoice}`);
     }
+
+    document.getElementById('roundMessage').classList.add('textFade');
+
+    document.getElementById('roundMessage').addEventListener('animationend', function() {
+        this.classList.remove('textFade');
+        this.style.opacity = 0;
+});
 }
 
-/*
-let result = handleRetaliation(playerChoice, computerChoice);
-
-function playRound(playerChoice, computerChoice) {
-    if (result == "Draw") {
-        console.log("It's a draw!")
-    }
-    else if(result == "Player") {
-        console.log(`You win! ${playerChoice} beats ${computerChoice}`)
-    }
-    else {
-        console.log(`You lose! ${computerChoice} beats ${playerChoice}`)
-    }
-}
-*/
 /*
 1. if player selection is X and computer selection is Y, add point to player, else add point to computer, display message of who beats who
 2. display points on board

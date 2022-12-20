@@ -31,36 +31,210 @@ body {
     width: 225px;
 }
 
-
-#playerArcher {
+#challengerHead {
+    font-size: 36px;
+    font-family: "Almendra";
     position: fixed;
-    top: 83%;
-    left: 19%;
+    color: white;
+    top: 60%;
+    left: 20%;
+    text-align: center;
+    font-weight: bolder;
+
 }
 
-#playerArrow {
-    position: absolute;
-    top: 83%;
-    left: 21%;
+#opponentHead {
+    font-size: 36px;
+    font-family: "Almendra";
+    position: fixed;
+    color: white;
+    top: 50%;
+    left: 50%;
+    text-align: center;
 }
+
+#challengerMessage {
+    animation: fade-in 2s linear;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+#roundMessage {
+    position: fixed;
+    color: white;
+    top: 69%;
+    left: 31%;
+    text-align: center;
+    width: 300px;
+    font-family: "Almendra";
+    font-size: 20px;
+}
+
+.textFade {
+    animation: textFade 1.4s linear;
+}
+
+@keyframes textFade {
+      0% {
+        opacity: 0;
+      }
+      25% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+      }
+      75% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+      }
+}
+
   .shoot {
-    animation: arrowAnimation 0.8s linear;
+    animation: arrowAnimation 1s linear;
   }
 
-  #playerArrow {
-    --arrow-left: 0%;
-    --arrow-top: 0%;
+  .compShoot {
+    animation: compArrowAnimation 1s linear;
   }
-  
+
+  .spell {
+    animation: spellAnimation 1s linear;
+  }
+
+  .compSpell {
+    animation: compSpellAnimation 1s linear;
+  }
+
+  .slash {
+    animation: slashAnimation 0.8s linear;
+  }
+
+  .compSlash {
+    animation: compSlashAnimation 0.8s linear;
+  }
+
   @keyframes arrowAnimation {
     0% {
       left: 21%;
     }
+    30% {
+      left: 21%  
+    }
     100% {
-      left: var(--arrow-left);
-      top: var(--arrow-top);
+      left: var(--target-left);
+      top: var(--target-top);
     }
   }
+
+  @keyframes compArrowAnimation {
+    0% {
+      left: 66%;
+    }
+    30% {
+      left: 66%;
+    }
+    100% {
+      left: var(--target-left);
+      top: var(--target-top);
+    }
+  }
+
+  @keyframes spellAnimation {
+    0% {
+      left: 28.5%;
+    }
+    30% {
+      left: 28.5%;  
+    }
+    100% {
+      left: var(--target-left);
+      top: var(--target-top);
+    }
+  }
+
+  @keyframes compSpellAnimation {
+    0% {
+      left: 52%;
+    }
+    30% {
+      left: 52%;  
+    }
+    100% {
+      left: var(--target-left);
+      top: var(--target-top);
+    }
+  }
+
+  @keyframes slashAnimation {
+    0% {
+      left: 34%;
+      transform: rotate(0deg);
+    }
+    24% {
+      left: 34%;
+      transform: rotate(0deg);
+    }
+    25% {
+      left: 35%;
+      transform: rotate(15deg);
+    }
+    50% {
+      left: 36%;
+      top: 77%;
+      transform: rotate(40deg);
+    }
+    75% {
+      transform: rotate(50deg);
+    }
+    100% {
+      left: 37%;
+      top: 82%;
+      transform: rotate(60deg);
+    }
+  }
+
+  @keyframes compSlashAnimation {
+    0% {
+      left: 44%;
+      
+    }
+    25% {
+      left: 44%;
+      
+    }
+    50% {
+      left: 42%;
+
+      
+    }
+    75% {
+      left: 42%;
+    }
+    100% {
+      left: 44%;
+    
+    }
+  }
+
 
 .hit {
     animation: flicker 0.2s linear 3;
@@ -77,34 +251,92 @@ body {
     }
   }
 
+#playerArcher {
+    position: fixed;
+    top: 83%;
+    left: 19%;
+}
+
+#playerArrow {
+    position: absolute;
+    top: 83%;
+    left: 21%;
+    z-index: 1;
+}
+
 #playerWizard {
     position: fixed;
     top: 75%;
     left: 26%;
 }
 
+#playerSpell {
+    position: absolute;
+    top: 72%;
+    left: 28%;
+    z-index: 1;
+}
+
+
 #playerWarrior {
     position: fixed;
     top: 83%;
     left: 32%;
+    z-index: 2;
+}
+
+#playerAxe {
+    position: absolute;
+    top: 78%;
+    left: 31.5%;
+    z-index: 2;
+    width: 100px;
+    height: 110px;
 }
 
 #computerWarrior {
     position: fixed;
-    top: 81%;
-    right: 45%;
+    top: 84%;
+    right: 48%;
+    width: 80px;
+    height: 80px;
+}
+
+#computerAxe {
+    position: absolute;
+    top: 83%;
+    right: 44%;
+    z-index: 1;
 }
 
 #computerWizard {
     position: fixed;
-    top: 78%;
+    top: 75%;
     right: 35%;
+    width: 135px;
+    height: 135px;
+}
+
+#computerSpell {
+    position: absolute;
+    top: 73%;
+    right: 38%;
+    z-index: 1;
 }
 
 #computerArcher {
     position: fixed;
-    top: 84%;
-    right: 22%;
+    top: 82%;
+    right: 24%;
+    width: 115px;
+    height: 115px;
+}
+
+#computerArrow {
+    position: absolute;
+    top: 78.5%;
+    right: 24%;
+    z-index: 1;
 }
 
 
