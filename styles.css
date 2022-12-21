@@ -20,17 +20,102 @@ body {
     background-attachment: fixed;
 }
 
-.banner {
+#overlay {
     position: fixed;
-    top: 68%;
-    left: 1%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.0);
+    z-index: 1000;
+    pointer-events: none;
 }
 
-#bannerImage {
-    height: 225px;
-    width: 225px;
+#nonClickContainer {
+    pointer-events: none;
 }
 
+#playHow {
+    position: fixed;
+    top: 47%;
+    left: 33%;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: opacity 1s;
+    opacity: 1;
+}
+
+#playHow.fade-out {
+    opacity: 0;
+  }
+
+#howHeading {
+    font-family: "Almendra";
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    width: 300px;
+}
+
+#howPara {
+    font-family: "Almendra";
+    font-size: 16px;
+    color: white;
+    width: 300px;
+    text-align: center;
+}
+
+#battleBtn {
+    display: flex;
+    justify-items: center;
+    margin: auto;
+    margin-bottom: 10px;
+    background-image: url('images/woodenSign.png');
+    background-size: 100% 100%;
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    color: white;
+    font-family: "Almendra";
+    font-size: 20px;
+    font-weight: bolder;
+    padding: 10px 32px;
+    height: 40px;
+    width: 170px;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    pointer-events: auto;
+    transition: transform 0.1s ease-in-out;
+}
+
+#battleBtn:hover {
+    transform: scale(1.05);
+}
+
+#battleBtn:active {
+    background-color: black;
+    box-shadow: 0 5px rgba(0, 0, 0, 0.5);
+    transform: translateY(4px);
+}
+
+.counterSection {
+    font-family: "Almendra";
+    font-size: 22px;
+    color: white;
+}
+
+#playerLives {
+    position: fixed;
+    top: 86%;
+    left: 7%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+#computerLives {
+    position: fixed;
+    top: 86%;
+    left: 79%;
+    background-color: rgba(0, 0, 0, 0.2);
+}
 #challengerHead {
     font-size: 36px;
     font-family: "Almendra";
@@ -40,7 +125,6 @@ body {
     left: 20%;
     text-align: center;
     font-weight: bolder;
-
 }
 
 #opponentHead {
@@ -54,8 +138,9 @@ body {
 }
 
 #challengerMessage {
-    animation: fade-in 2s linear;
+    animation: fade-in 5s linear;
     animation-fill-mode: forwards;
+    display: none;
 }
 
 @keyframes fade-in {
@@ -63,7 +148,7 @@ body {
         opacity: 0;
     }
     25% {
-        opacity: 1;
+        opacity: 0;
     }
     50% {
         opacity: 1;
@@ -255,6 +340,11 @@ body {
     position: fixed;
     top: 83%;
     left: 19%;
+    transition: transform 0.1s ease-in-out;
+}
+
+#playerArcher:hover {
+    transform: scale(1.05);
 }
 
 #playerArrow {
@@ -268,6 +358,11 @@ body {
     position: fixed;
     top: 75%;
     left: 26%;
+    transition: transform 0.1s ease-in-out;
+}
+
+#playerWizard:hover {
+    transform: scale(1.05);
 }
 
 #playerSpell {
@@ -283,6 +378,11 @@ body {
     top: 83%;
     left: 32%;
     z-index: 2;
+    transition: transform 0.1s ease-in-out;
+}
+
+#playerWarrior:hover {
+    transform: scale(1.05);
 }
 
 #playerAxe {

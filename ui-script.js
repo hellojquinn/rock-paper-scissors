@@ -22,6 +22,18 @@ const computerChoiceMap = {
     Archer: 'Centaur'
   };
 
+
+  window.onload = () => {
+    const battleButton = document.getElementById('battleBtn');
+    const nonClickContainer = document.getElementById('nonClickContainer');
+  
+    battleButton.addEventListener('click', () => {
+    nonClickContainer.style.pointerEvents = 'auto';
+    playHow.classList.add('fade-out');
+    challengerMessage.style.display = 'block';
+    });
+  };
+
 function getComputerChoice() {
     const choice = options[Math.floor(Math.random() * options.length)];
     return choice;

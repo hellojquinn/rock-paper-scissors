@@ -10,9 +10,22 @@
 </head>
 <body>
 
-<!-- Heading Section -->
-    <div class="banner">
-        <img src="images/banner.png" id="bannerImage">
+
+  <div id="playHow">
+    <h1 id="howHeading">How To Play:</h1>
+    <p id="howPara">Click on either the Archer, Wizard, or Warrior, or press 1, 2, or 3, to select your Champion! <br><br> 
+        Each side has ten lives in this fantasy iteration of Roshambo.</p>
+    <button id="battleBtn">Begin Battle</button>
+  </div>
+
+  <div id="overlay"></div>
+
+  <div id="nonClickContainer">
+    <div class="counterSection">
+        <div id="playerLives">Player Lives:</div>
+        <div id="playerCounter"></div>
+        <div id="computerLives">Opponent Lives:</div>
+        <div id="computerCounter"></div>
     </div>
 
     <div id="roundMessage">
@@ -43,24 +56,7 @@
         <img src="images/ComputerArrow.png" id="computerArrow">
     </div>
 </div>
-
-<!-- Battle Arena Section -->
-
-    <div id="playersChoice">
-
-    </div>
-
-    <!-- Section where ability will display -->
-
-    <div id="computersChoice">
-
-    </div>
-
-<!-- Herald Announcer -->
-
-    <div class="herald">
-
-    </div>
+</div>
     <script src="ui-script.js" defer></script> 
 </body>
 </html>
