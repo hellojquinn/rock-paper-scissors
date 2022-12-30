@@ -20,17 +20,6 @@ body {
     background-attachment: fixed;
 }
 
-#overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.0);
-    z-index: 1000;
-    pointer-events: none;
-}
-
 #nonClickContainer {
     pointer-events: none;
 }
@@ -43,6 +32,26 @@ body {
     transition: opacity 1s;
     opacity: 1;
 }
+
+#endGame {
+    position: fixed;
+    top: 58%;
+    left: 33%;
+    background-color: rgba(0, 0, 0, 0.6);
+    transition: opacity 1s;
+    opacity: 0;
+    display: none;
+}
+
+#endGame.fade-in {
+  opacity: 1;
+}
+
+#endGame.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
 
 #playHow.fade-out {
     opacity: 0;
@@ -97,6 +106,60 @@ body {
     transform: translateY(4px);
 }
 
+#playAgain {
+  display: flex;
+  justify-items: center;
+  margin: auto;
+  margin-bottom: 10px;
+  background-image: url('images/woodenSign.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: white;
+  font-family: "Almendra";
+  font-size: 20px;
+  font-weight: bolder;
+  padding: 10px 32px;
+  height: 40px;
+  width: 170px;
+  transition-duration: 0.2s;
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform 0.1s ease-in-out;
+  display: none;
+}
+
+#playAgain:hover {
+  transform: scale(1.05);
+}
+
+#playAgain:active {
+  background-color: black;
+  box-shadow: 0 5px rgba(0, 0, 0, 0.5);
+  transform: translateY(4px);
+}
+
+#defeat {
+  font-family: "Almendra";
+  font-size: 40px;
+  color: white;
+  width: 300px;
+  text-align: center;
+  padding-bottom: 25px;
+  display: none;
+}
+
+#victory {
+  font-family: "Almendra";
+  font-size: 40px;
+  color: white;
+  width: 300px;
+  text-align: center;
+  padding-bottom: 25px;
+  display: none;
+}
+
 .counterSection {
     font-family: "Almendra";
     font-size: 22px;
@@ -115,6 +178,20 @@ body {
     top: 86%;
     left: 79%;
     background-color: rgba(0, 0, 0, 0.2);
+}
+
+#playerCounter {
+  font-size: 40px;
+  position: fixed;
+  top: 89%;
+  left: 9.7%;
+}
+
+#computerCounter {
+  font-size: 40px;
+  position: fixed;
+  top: 89%;
+  left: 83%;
 }
 #challengerHead {
     font-size: 36px;
@@ -341,6 +418,7 @@ body {
     top: 83%;
     left: 19%;
     transition: transform 0.1s ease-in-out;
+    cursor: pointer;
 }
 
 #playerArcher:hover {
@@ -359,6 +437,7 @@ body {
     top: 75%;
     left: 26%;
     transition: transform 0.1s ease-in-out;
+    cursor: pointer;
 }
 
 #playerWizard:hover {
@@ -379,6 +458,7 @@ body {
     left: 32%;
     z-index: 2;
     transition: transform 0.1s ease-in-out;
+    cursor: pointer;
 }
 
 #playerWarrior:hover {

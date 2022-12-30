@@ -1,17 +1,6 @@
-/*
-Warrior Wizard Archer
-Array that holds the options
-3 buttons, one for each option
-When the user selects one of those options, I need the computer to do the same randomly
-Options to weigh up which is greater
-Display which option is greater, announce who is winner, user or computer
-Make counter for whichever user first gets to 5 wins, announce them as winner
-Give button to restart game
-*/
-
-
 let playerChoice;
 let computerChoice;
+
 // Random selection for computer
 const options = ['Warrior', 'Wizard', 'Archer'];
 
@@ -44,6 +33,7 @@ function getComputerChoice() {
 let playerArrow = document.getElementById('playerArrow');
 playerArrow.style.display = 'none';
 computerArrow.style.display = 'none';
+
 
 document.getElementById('playerArcher').addEventListener('click', function() {
   playerChoice = 'Archer';
@@ -112,6 +102,7 @@ document.getElementById('playerWarrior').addEventListener('click', function() {
   computerChoice = getComputerChoice();
 
   let target = document.getElementById(`computer${computerChoice}`);
+
   target.classList.remove('hit');
 
   let slashAnimation = getComputedStyle(playerAxe).animation;
@@ -121,7 +112,6 @@ document.getElementById('playerWarrior').addEventListener('click', function() {
   });
   handleRetaliation(computerChoice, playerChoice);
 });
-
 
 
 //retaliation function
@@ -197,9 +187,11 @@ function handleRetaliation(computerChoice, playerChoice) {
             (playerChoice == 'Archer' && computerChoice == 'Wizard')
     ){ 
         document.getElementById('roundMessage').textContent = (`You win! ${playerChoice} beats ${computerChoiceMap[computerChoice]}`);
-        
+        computerCounter.textContent = parseInt(computerCounter.textContent) - 1;
+
     } else {
         document.getElementById('roundMessage').textContent = (`You lose! ${computerChoiceMap[computerChoice]} beats ${playerChoice}`);
+        playerCounter.textContent = parseInt(playerCounter.textContent) - 1;
     }
 
     document.getElementById('roundMessage').classList.add('textFade');
@@ -207,11 +199,56 @@ function handleRetaliation(computerChoice, playerChoice) {
     document.getElementById('roundMessage').addEventListener('animationend', function() {
         this.classList.remove('textFade');
         this.style.opacity = 0;
+
+
+        const playerCounter = document.getElementById('playerCounter');
+        const computerCounter = document.getElementById('computerCounter');
+
+        if (parseInt(playerCounter.textContent) <= 0) {
+          nonClickContainer.style.pointerEvents = 'none';
+          document.getElementById('endGame').style.display = 'block';
+          document.getElementById('victory').style.display = 'none';
+          document.getElementById('defeat').style.display = 'block';
+          document.getElementById('playAgain').style.display = 'block';
+
+          setTimeout(function() {
+            document.getElementById('endGame').classList.add('fade-in');
+          }, 400);
+
+        } else if (parseInt(computerCounter.textContent) <= 0) {
+          nonClickContainer.style.pointerEvents = 'none';
+          document.getElementById('endGame').style.display = 'block';
+          document.getElementById('defeat').style.display = 'none';
+          document.getElementById('victory').style.display = 'block';
+          document.getElementById('playAgain').style.display = 'block';
+
+          setTimeout(function() {
+            document.getElementById('endGame').classList.add('fade-in');
+          }, 400);
+        }
 });
+
 }
 
-/*
-1. if player selection is X and computer selection is Y, add point to player, else add point to computer, display message of who beats who
-2. display points on board
-3. Whichever side first reaches 5, display winner
-*/
+function resetGame() {
+  playerChoice = null;
+  computerChoice = null;
+
+  document.getElementById('playerCounter').textContent = '3';
+  document.getElementById('computerCounter').textContent = '3';
+  document.getElementById('endGame').classList.add('fade-out');
+  document.getElementById('endGame').classList.remove('fade-in');
+  nonClickContainer.style.pointerEvents = 'auto';
+
+  setTimeout(function() {
+    document.getElementById('endGame').classList.remove('fade-out');
+    document.getElementById('endGame').style.display = 'none';
+  }, 400);
+}
+
+document.getElementById('playAgain').addEventListener('click', function() {
+  resetGame();
+});
+
+
+
