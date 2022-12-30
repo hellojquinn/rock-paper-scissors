@@ -20,6 +20,20 @@ body {
     background-attachment: fixed;
 }
 
+#credits {
+  margin: 15px;
+  padding: 8px;
+  font-family: "Almendra";
+  font-size: 12px;
+  width: 332px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+a {
+  color: #e56021;
+}
+
 #nonClickContainer {
     pointer-events: none;
 }

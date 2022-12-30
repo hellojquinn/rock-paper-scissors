@@ -11,7 +11,7 @@ const computerChoiceMap = {
     Archer: 'Centaur'
   };
 
-
+//Make entire screen non-clickable except the Begin Battle button on page load
   window.onload = () => {
     const battleButton = document.getElementById('battleBtn');
     const nonClickContainer = document.getElementById('nonClickContainer');
@@ -23,6 +23,7 @@ const computerChoiceMap = {
     });
   };
 
+//Random choice selection for computer
 function getComputerChoice() {
     const choice = options[Math.floor(Math.random() * options.length)];
     return choice;
@@ -114,7 +115,7 @@ document.getElementById('playerWarrior').addEventListener('click', function() {
 });
 
 
-//retaliation function
+//Retaliation Function
 function handleRetaliation(computerChoice, playerChoice) { 
 
     let playerTarget = document.getElementById(`player${playerChoice}`);
@@ -123,7 +124,7 @@ function handleRetaliation(computerChoice, playerChoice) {
 
     playerTarget.classList.remove('hit');
 
-//Archer retaliate
+//Centaur retaliate
     if (computerChoice === 'Archer') {
     computerArrow.style.display = 'inline-block';
     computerArrow.classList.add('compShoot');
@@ -141,7 +142,7 @@ function handleRetaliation(computerChoice, playerChoice) {
     computerArrow.style.display = 'none';
     computerArrow.classList.remove('compShoot');
 
-//Wizard retaliate
+//Dragon retaliate
   } if (computerChoice === 'Wizard') {
     computerSpell.style.display = 'inline-block';
     computerSpell.classList.add('compSpell');
@@ -159,7 +160,7 @@ function handleRetaliation(computerChoice, playerChoice) {
     computerSpell.style.display = 'none';
     computerSpell.classList.remove('compSpell');
 
-//Warrior retaliate
+//Goblin retaliate
 
   } if (computerChoice === 'Warrior') {
     computerAxe.style.display = 'inline-block';
@@ -178,7 +179,7 @@ function handleRetaliation(computerChoice, playerChoice) {
     computerAxe.style.display = 'none';
     computerAxe.classList.remove('compSlash');
 
-// rock paper scissors logic
+// Rock Paper Scissors logic
 } if (playerChoice === computerChoice) {
     document.getElementById('roundMessage').textContent = "Draw!";
         } else if (
@@ -200,6 +201,7 @@ function handleRetaliation(computerChoice, playerChoice) {
         this.classList.remove('textFade');
         this.style.opacity = 0;
 
+        //Display win/loss message
 
         const playerCounter = document.getElementById('playerCounter');
         const computerCounter = document.getElementById('computerCounter');
@@ -230,6 +232,7 @@ function handleRetaliation(computerChoice, playerChoice) {
 
 }
 
+// Game reset
 function resetGame() {
   playerChoice = null;
   computerChoice = null;
